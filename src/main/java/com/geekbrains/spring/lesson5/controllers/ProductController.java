@@ -17,9 +17,6 @@ import java.util.Map;
 @Controller
 @RequestMapping("/products")
 public class ProductController {
-    /**
-     * alt+cmd+/
-     * */
 
     private ProductService productService;
 
