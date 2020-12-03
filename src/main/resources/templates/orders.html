@@ -36,6 +36,30 @@
         </tr>
         </tbody>
     </table>
+    <form>
+        <a class="btn btn-primary" th:href="@{/orders/add}">Добавить новый заказ</a>
+    </form>
+    
+    
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li class="page-item" th:classappend="${orders.isFirst() ? 'disabled' : ''}">
+                <a class="page-link"
+                   th:href="@{'/orders?p=' + ${orders.previousOrFirstPageable().getPageNumber() + 1} + ${filterDefinition}}">Назад</a>
+            </li>
+            
+            <li class="page-item" th:classappend="${orders.getNumber() + 1 == i ? 'active' : ''}"
+                th:each="i : ${#numbers.sequence(1, orders.getTotalPages())}">
+                <a class="page-link" th:text="${i}" th:href="@{'/orders?p=' + ${i} + ${filterDefinition}}"></a>
+            </li>
+            
+            <li class="page-item"  th:classappend="${orders.isLast() ? 'disabled' : ''}">
+                <a class="page-link"
+                   th:href="@{'/orders?p='+ ${orders.nextOrLastPageable().getPageNumber() + 1} + ${filterDefinition}}">Вперед</a>
+            </li>
+        </ul>
+    </nav>
+    
 </div>
 
 </body>
